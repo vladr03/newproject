@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name='description' content="${description}">
+</head>
+<body>
+<h1 th:text="${h1}"></h1>
+<strong>Список ссылок на опубликованные статьи</strong>
+<div th:each="article : ${published_articles}">
+    <p th:text="'Название статьи: ' + ${article.getTitle()}"></p>
+    <li><a th:href="@{{id}(id=${article.getId()})}">Ссылка</a></li>
+</div>
+<hr>
+<style>
+    .del {
+        display: none;
+    }
+
+    .del:not(:checked) + label + * {
+        display: none;
+    }
+
+    .del:not(:checked) + label,
+    .del:checked + label {
+        display: inline-block;
+        color: #ffff;
+        background: #4e6473;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .del:checked + label {
+        background: gray;
+    }
+</style>
+<input type="checkbox" id="raz" class="del"/>
+<label for="raz" class="del">Неопубликованные статьи</label>
+<div>
+    <div th:each="article : ${unpublished_articles}">
+        <p th:text="'Название статьи: ' + ${article.getTitle()}"></p>
+        <li><a th:href="@{{id}(id=${article.getId()})}">Ссылка</a></li>
+    </div>
+</div>
+<hr>
+<form action="/create" target="_blank">
+    <button>Добавить статью</button>
+</form>
+</body>
+</html>

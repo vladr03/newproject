@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name='description' content="Изменить статью">
+    <title>Update article</title>
+</head>
+<body>
+<form th:action="@{/update/{id}(id=${article.getId()})}" th:object="${article}" th:method="POST">
+    <label for="title">Название статьи</label>
+    <br>
+    <input type="text" th:field="*{title}" id="title">
+    <br>
+    <label for="text">Содержание</label>
+    <br>
+    <textarea th:field="*{text}" id="text" cols="50" rows="10"></textarea>
+    <br>
+    <label for="published_at">Дата и время публикации</label>
+    <br>
+    <input type="date" th:field="*{published_at}" id="published_at">
+    <br>
+    <input type="submit" value="Изменить">
+</form>
+</body>
+</html>

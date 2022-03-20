@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name='description' content="Содержимое статьи">
+    <title>Content</title>
+</head>
+<body>
+<p th:text="${article.getTitle()}"></p>
+<hr>
+<p th:text="${article.getText()}"></p>
+<p th:text="${article.getPublished_at()}"></p>
+<button><a th:href="@{update/{id}(id=${article.getId()})}"
+           style="text-decoration: none">Редактировать статью</a>
+</button>
+<hr>
+<button><a th:href="@{delete/{id}(id=${article.getId()})}"
+           style="text-decoration: none">Удалить статью</a>
+</button>
+</body>
+</html>
